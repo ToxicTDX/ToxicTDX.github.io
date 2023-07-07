@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe MDL2 Assets", Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom right, #f0eff7, #a6c7e2);
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+            line-height: 50px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidemenu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(to bottom, #a6c7e2, #6fa2d9);
+            transition: left 0.3s ease;
+        }
+        
+        .sidemenu.open {
+            left: 0;
+        }
+        
+        .sidemenu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        
+        .sidemenu ul li {
+            margin-bottom: 10px;
+        }
+        
+        .sidemenu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .close-arrow {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .close-arrow:hover {
+            background-color: #eee;
+        }
+        
+        .lua-code-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fade-in 0.5s forwards;
+        }
+        
+        .lua-code-container.visible {
+            opacity: 1;
+            animation: fade-in 0.5s forwards, slide-up 0.5s forwards;
+        }
+        
+        .lua-code-container h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .lua-code-container ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .lua-code-container ul li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .copy-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6fa2d9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .copy-button:hover {
+            background-color: #5791c9;
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slide-up {
+            from {
+                transform: translate(-50%, 100%);
+            }
+            to {
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+    <script>
+        function toggleSidemenu() {
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const sidemenu = document.getElementById('sidemenu');
+
+            hamburgerIcon.classList.toggle('open');
+            sidemenu.classList.toggle('open');
+
+            if (sidemenu.classList.contains('open')) {
+                hamburgerIcon.style.display = 'none';
+            } else {
+                hamburgerIcon.style.display = 'block';
+            }
+        }
+
+        function copyScript() {
+            const script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ToxicTDX/ToxicTDX-V2/main/ToxicTDX%20V2", true))()';
+            navigator.clipboard.writeText(script).then(function() {
+                alert('Script copied to clipboard!');
+            }).catch(function(error) {
+                console.error('Failed to copy script: ', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="hamburger" onclick="toggleSidemenu()" id="hamburgerIcon">&#xE700;</div>
+    
+    <div class="sidemenu" id="sidemenu">
+        <div class="close-arrow" onclick="toggleSidemenu()">←</div>
+        <ul>
+            <li><a href="https://discord.gg/CJNcM9rYZY" target="_blank">Discord</a></li>
+            <li><a href="https://discord.gg/CJNcM9rYZY" target="_blank">Key</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+    </div>
+    
+    <div class="lua-code-container">
+        <h2>Supported games as of 7/7/23</h2>
+        <ul>
+            <li>The Wild West 🟡</li>
+            <li>Universal  🟢</li>
+            <li>Shoot Out🟢</li>
+            <li>Smoothie Factory Tycoon🟢</li>
+            <li>Evade🟢</li>
+            <li>Fishing Frenzy 🟢</li>
+            <li>Taxi Simulator 2🟢</li>
+            <li>Zombie Uprising 🟢</li>
+            <li>Doors 🟢</li>
+            <li>Arm Wrestle Simulator🟢</li>
+            <li>Case Opening Simulator 2🟢</li>
+        </ul>
+        <div class="lua-code">
+            <p>In Lua syntax:</p>
+            <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/ToxicTDX/ToxicTDX-V2/main/ToxicTDX%20V2", true))()</code>
+        </div>
+        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+    </div>
+</body>
+</html>
